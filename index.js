@@ -1,22 +1,22 @@
 const express = require('express')
 const app = express()
 
-const mysql = require('mysql')
+const mysql = require('mysql2')
 
 const db = mysql.createPool({
     host: 'localhost', 
     user: 'root',
     password: 'ORACLE545901',
-    database: 'online_store',
+    database: 'cake_shop',
 });
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     const sqlInsert = 
-     "INSERT INTO `online_store`.`products` (`product_id`, `name`, `unit_measure_id`, `price_per_unit`) VALUES ('11', 'sel', '1', '13');"
+    "INSERT INTO cake_shop.cake_review (id, name, review) VALUES ('1', '2', '1')"
 
 
     db.query(sqlInsert, (err, result)=>{
-        res.send("hello lilly and all!!");
+        res.send("Insert succesful to MySQL");
 
     })
    
