@@ -8,6 +8,8 @@ const cors = require('cors');
 
 const mysql = require('mysql2');
 
+//CREATING DATABASE MYSQL CONNECTION
+
 const db = mysql.createPool({
     host: 'localhost', 
     user: 'root',
@@ -15,10 +17,13 @@ const db = mysql.createPool({
     database: 'cake_shop',
 });
 
+//CONNECTION BACKEND AND FRONT END USING CORS AND BODYPARSER
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(cors());
 app.use(express.json());
+
+//INSERT REQUEST
 
 app.post('/api/insert', (req, res)=> {
     
@@ -42,6 +47,8 @@ app.post('/api/insert', (req, res)=> {
     });
 });
 
+//GET REQUEST
+
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
@@ -55,15 +62,3 @@ app.listen(PORT, () => {
 
 //run the file: node index.js
 //
-
-/* app.get("/", (req, res) => {
-    const sqlInsert = 
-    "INSERT INTO cake_shop.cake_review (id, name, review) VALUES ('1', '2', '1')"
-
-
-    db.query(sqlInsert, (err, result)=>{
-        res.send("Insert succesful to MySQL");
-
-    })
-   
-}); */
