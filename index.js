@@ -49,8 +49,21 @@ app.post('/api/insert', (req, res)=> {
 
 //GET REQUEST
 
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
+app.get("/", (req, res) => {
+    const sqlSelect = 
+    "SELECT * FROM cake_review";
+    db.query(sqlSelect,
+        (err, result)=>{
+        //called con the front end by submitReview
+        if (err) {
+            console.log("oh no" + err);
+        } else {
+            res.send(result);
+            console.log(result);
+        };
+        
+
+    });
   });
   
 
