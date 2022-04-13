@@ -65,6 +65,16 @@ app.get("/", (req, res) => {
 
     });
   });
+
+  //DELETE REQUEST
+  app.delete('/api/delete/:id', (req, res)=> {
+      const name = req.params.cakeName
+      const sqlDelete = "DELETE FROM cake_review WHERE  id = ?" 
+
+      db.query(sqlDelete, name, (err, result) => {
+         if (err) console.log(err)
+      })
+  })
   
 
 
