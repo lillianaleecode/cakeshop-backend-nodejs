@@ -14,9 +14,10 @@ app.set('view engine', 'ejs');
 
 app.use('/', require('./router'));
 
+/* //en vez de tener esto aqui, se pasa al router.js
 app.get('/', (req, res)=>{
     res.send('hello lilly');
-})
+}) */
 
 
 
