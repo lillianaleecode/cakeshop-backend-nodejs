@@ -1,8 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/contacto', (req, res)=>{
-    res.send('CONTACTO');
+const conexion = require('./database/db')
+router.get('/', (req, res)=>{
+    conexion.query('SELECT * FROM cake_review', (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.send(results);
+        }
+    })
 
 })
 
