@@ -8,6 +8,19 @@ const cors = require('cors');
 
 const mysql = require('mysql2');
 
+
+//invocar motor de plantilla  
+app.set('view engine', 'ejs');
+
+app.use('/', require('./router'));
+
+app.get('/', (req, res)=>{
+    res.send('hello lilly');
+})
+
+
+
+/* 
 //CREATING DATABASE MYSQL CONNECTION
 
 const db = mysql.createPool({
@@ -16,7 +29,6 @@ const db = mysql.createPool({
     password: 'ORACLE545901',
     database: 'cake_shop',
 });
-
 //CONNECTION BACKEND AND FRONT END USING CORS AND BODYPARSER
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -75,13 +87,12 @@ app.get("/", (req, res) => {
          if (err) console.log(err)
       })
   })
-  
 
-
-app.listen(PORT, () => {
-    console.log("running on port 3001");
+ */
+app.listen(5000, () => {
+    console.log("running on port http://localhost:5000");
 
 });
 
-//run the file: node index.js
+//run the file: nodemon app updatea cambios automaticamente or npm start
 //
