@@ -5,15 +5,15 @@ const conexion = require('./database/db')
 
 //%%%%%% USERS %%%%%%
 router.get('/', (req, res)=>{
-    res.render('index')
-    /* conexion.query('SELECT * FROM users', (error, results)=>{
+    
+    conexion.query('SELECT * FROM users', (error, results)=>{
         if(error){
             throw error;
         }else{
-            res.send(results);
+            res.render('index', {results:results});
         }
     });
-     */
+    
 
 })
 

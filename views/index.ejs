@@ -65,11 +65,19 @@
               </thead>
 
               <tbody>
+                  <% results.forEach((user)=>{ %>
+
+                  
                   <tr>
-                      <td>id</td>
-                      <td>user</td>
-                      <td>role</td>
+                      <td><%=user.id %></td>
+                      <td><%=user.user %></td>
+                      <td><%=user.role %></td>
+                      <td>
+                          <a href="/edit" class="btn btn-outline-info">edit</a>
+                          <a href="/delete" class="btn btn-outline-info">delete</a>
+                      </td>
                   </tr>
+               <% }) %>
 
               </tbody>
           </table>
