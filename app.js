@@ -12,6 +12,9 @@ const mysql = require('mysql2');
 //invocar motor de plantilla  
 app.set('view engine', 'ejs');
 
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
+
 app.use('/', require('./router'));
 
 /* //en vez de tener esto aqui, se pasa al router.js
