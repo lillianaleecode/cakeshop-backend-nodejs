@@ -27,7 +27,7 @@ dotenv.config({path: './env/.env'})
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
-app.use('/', require('./router'));
+app.use('/', require('./routes/router'));
 
 
 

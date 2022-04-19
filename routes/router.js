@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const conexion = require('./database/db')
+const conexion = require('../database/db')
 
-//%%%%%% LOGIN %%%%%%
+//%%%%%% DASHBOARD %%%%%%
 router.get('/', (req, res)=>{
     
-  res.send('hello world!lalalal')
+  res.render('index')
     
     
 
@@ -83,7 +83,7 @@ router.get('/cake_review', (req, res)=>{
 
 })
 
-const crud = require('./controllers/crud.js');
+const crud = require('../controllers/crud.js');
 router.post('/save', crud.save);
 router.post('/update', crud.update);
 
