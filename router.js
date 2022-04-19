@@ -3,6 +3,15 @@ const router = express.Router();
 
 const conexion = require('./database/db')
 
+//%%%%%% LOGIN %%%%%%
+router.get('/', (req, res)=>{
+    
+  res.send('hello world!lalalal')
+    
+    
+
+})
+
 //%%%%%% USERS %%%%%%
 router.get('/home', (req, res)=>{
     

@@ -8,11 +8,24 @@ const cors = require('cors');
 
 const mysql = require('mysql2');
 
+const dotenv = require('dotenv'); //for the login
+const cookieParser = require('cookie-parser');//for the login
+
 
 //invocar motor de plantilla  
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded({extended:false}));
+//set static files in PUBLIC FOLDER
+app.use(express.static('public'));
+
+//setear variables de entorno (environment setings)
+dotenv.config({path: './env/.env'})
+
+//set cookies
+app.use(cookieParser)
+
+//configuring Node to process data
+app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 app.use('/', require('./router'));
