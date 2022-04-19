@@ -47,6 +47,20 @@ router.get('/edit/:id', (req, res)=>{
 
 })
 
+//%%%%%% USERS DELETE %%%%%%
+router.get('/delete/:id', (req, res)=>{
+    const id = req.params.id;
+    conexion.query('DELETE FROM users users WHERE id=?', [id],
+    (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.redirect('/');
+        }
+    });
+    
+
+})
 //%%%%%% CAKE REVIEW %%%%%%
 router.get('/cake_review', (req, res)=>{
     conexion.query('SELECT * FROM cake_review', (error, results)=>{
