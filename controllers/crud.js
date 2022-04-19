@@ -9,7 +9,7 @@ exports.save = (req, res)=>{
         if(error){
             console.log(error);
         }else{
-            res.redirect('/home');
+            res.redirect('/user_roles');
         }
     })
 }
@@ -23,7 +23,7 @@ exports.update = (req, res)=>{
         if(error){
             console.log(error);
         }else{           
-            res.redirect('/home');         
+            res.redirect('/user_roles');         
         }
 });
 };

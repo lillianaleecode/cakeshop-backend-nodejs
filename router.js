@@ -13,13 +13,13 @@ router.get('/', (req, res)=>{
 })
 
 //%%%%%% USERS %%%%%%
-router.get('/home', (req, res)=>{
+router.get('/user_roles', (req, res)=>{
     
     conexion.query('SELECT * FROM users', (error, results)=>{
         if(error){
             throw error;
         }else{
-            res.render('index', {results:results});
+            res.render('user_roles', {results:results});
         }
     });
     
@@ -64,7 +64,7 @@ router.get('/delete/:id', (req, res)=>{
         if(error){
             throw error;
         }else{
-            res.redirect('/home');
+            res.redirect('/user_roles');
         }
     });
     
