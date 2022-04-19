@@ -12,6 +12,24 @@ router.get('/', (req, res)=>{
 
 })
 
+//%%%%%% LOGIN %%%%%%
+router.get('/login', (req, res)=>{
+    
+    res.render('login')
+      
+      
+  
+  })
+
+//%%%%%% REGISTER %%%%%%
+router.get('/register', (req, res)=>{
+    
+    res.render('register')
+      
+      
+  
+  })
+
 //%%%%%% USERS %%%%%%
 router.get('/user_roles', (req, res)=>{
     
