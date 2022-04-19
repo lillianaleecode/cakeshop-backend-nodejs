@@ -4,7 +4,7 @@ const router = express.Router();
 const conexion = require('./database/db')
 
 //%%%%%% USERS %%%%%%
-router.get('/', (req, res)=>{
+router.get('/home', (req, res)=>{
     
     conexion.query('SELECT * FROM users', (error, results)=>{
         if(error){
@@ -55,7 +55,7 @@ router.get('/delete/:id', (req, res)=>{
         if(error){
             throw error;
         }else{
-            res.redirect('/');
+            res.redirect('/home');
         }
     });
     
