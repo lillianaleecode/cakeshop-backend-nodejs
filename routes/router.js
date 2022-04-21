@@ -3,6 +3,7 @@ const router = express.Router();
 
 const conexion = require('../database/db')
 
+//%%%%%% ROUTERS PARA LAS VISTAS %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%%
 //%%%%%% DASHBOARD %%%%%%
 router.get('/', (req, res)=>{
     
@@ -104,5 +105,16 @@ router.get('/cake_review', (req, res)=>{
 const crud = require('../controllers/crud.js');
 router.post('/save', crud.save);
 router.post('/update', crud.update);
+
+//%%%%%% ROUTERS PARA LOS METODOS DEL CONTROLLER %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%%
+
+//%%%%%% REGISTER POST %%%%%%
+
+const authController = require('../controllers/authController');
+
+
+router.post('/register', authController.register);
+
+
 
 module.exports = router;
