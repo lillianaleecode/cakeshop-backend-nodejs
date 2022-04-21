@@ -32,3 +32,19 @@ exports.register = async(req, res) => {
     
 
 }
+
+exports.login = async(req, res) => {
+
+    try {
+    const user = req.body.user; //from the form login.js
+    const pass = req.body.pass;
+    console.log(user, pass);
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+
+    
+
+}
