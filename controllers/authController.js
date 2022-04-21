@@ -5,7 +5,9 @@ const {promisify} = require('util') //promesas asincronicas
 
 //process for registering
 exports.register = async(req, res) => {
-    //capture name, user and password:
+
+    try {
+        //capture name, user and password:
     const name = req.body.name;
     const user = req.body.user;
     const pass = req.body.pass;
@@ -13,6 +15,20 @@ exports.register = async(req, res) => {
 
     let passHash = await bcryptjs.hash(pass, 8);
     console.log(passHash);
+
+    conexion.query('INSERT INTO users_login SET ?', {user:user, name: name, pass: passHash}, (error, results)=>{
+        if(error){
+            console.log(error);
+        }else{
+            res.redirect('/');
+        }
+    })
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+
     
 
 }
