@@ -125,3 +125,9 @@ exports.isAuthenticated = async(req, res, next) => {
         res.redirect('login');
     }
 }
+
+//logout (process where eliminates the cookie)
+exports.logout = (req, res)=>{
+    res.clearCookie('jwt')   
+    return res.redirect('/')
+}

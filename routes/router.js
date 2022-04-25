@@ -116,5 +116,11 @@ router.post('/register', authController.register);
 //%%%%%% LOGIN POST %%%%%%
 router.post('/login', authController.login);
 
+//%%%%%% LOGOUT %%%%%%
+router.get('/logout', authController.logout);
+
+
+
+
 
 module.exports = router;
