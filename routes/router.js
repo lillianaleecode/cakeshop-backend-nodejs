@@ -3,11 +3,13 @@ const router = express.Router();
 
 const conexion = require('../database/db')
 
+const authController = require('../controllers/authController')
+
 //%%%%%% ROUTERS PARA LAS VISTAS %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%%
 //%%%%%% DASHBOARD %%%%%%
-router.get('/', (req, res)=>{
+router.get('/', authController.isAuthenticated, (req, res)=>{
     
-  res.render('index')
+  res.render('index', {user:req.user})
     
     
 
@@ -109,17 +111,10 @@ router.post('/update', crud.update);
 //%%%%%% ROUTERS PARA LOS METODOS DEL CONTROLLER %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%%
 
 //%%%%%% REGISTER POST %%%%%%
-
-const authController = require('../controllers/authController');
-
-
 router.post('/register', authController.register);
 
 //%%%%%% LOGIN POST %%%%%%
-
 router.post('/login', authController.login);
-
-
 
 
 module.exports = router;

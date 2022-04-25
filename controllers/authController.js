@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcryptjs = require('bcryptjs')
 const conexion = require('../database/db')
 const {promisify} = require('util') //promesas asincronicas
+const { nextTick } = require('process')
 
 //process for registering
 exports.register = async(req, res) => {
@@ -98,4 +99,29 @@ exports.login = async(req, res) => {
 
     
 
+}
+
+//authentication (middleware used called "next")
+//https://expressjs.com/en/guide/writing-middleware.html
+exports.isAuthenticated = async(req, res, next) => {
+    //revisar cookies
+    if (req.cookies.jwt) {
+        try {
+            //verificar el token (decodificar)
+            const decodificada = await promisify (jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
+            //despues de decodificar, conectar al MYSQL
+            conexion.query('SELECT * FROM users_login WHERE id = ?', [decodificada.id], (error, results)=>{
+                if (!results){return next()} //en caso de que no tenga ningun valor
+                req.user = results[0]
+                return next()
+
+            })
+        } catch (error) {
+            console.log(error);
+            return next();
+            
+        }
+    }else { //si no esta autenticado, se redirige al login
+        res.redirect('login');
+    }
 }
