@@ -54,9 +54,9 @@ exports.login = async(req, res) => {
             conexion.query('SELECT * FROM users_login WHERE user = ?', [user], async (error, results)=>{
                 if( results.length == 0 || ! (await bcryptjs.compare(pass, results[0].pass)) ){
                     res.render('login', {
-                        alert: false,
+                        alert: true,
                         alertTitle: "Error",
-                        alertMessage: "User and or Password incorrect :(!",
+                        alertMessage: "User with Password incorrect :(  !",
                         alertIcon:'error',
                         showConfirmButton: true,
                         timer: false,
