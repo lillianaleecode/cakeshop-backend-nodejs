@@ -62,6 +62,11 @@ exports.login = async(req, res) => {
                     timer: false,
                     ruta: 'login'    
                 })
+            }else{
+                //created session successful:
+                const id = results[0].id
+                const token = jwt.sign({id: id}, process.env.JWT_SECRETO)
+                console.log("TOKEN: "+token+" for the USER : "+user)
             }
 
         })
