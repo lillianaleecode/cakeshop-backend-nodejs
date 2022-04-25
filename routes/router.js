@@ -16,8 +16,8 @@ router.get('/', (req, res)=>{
 //%%%%%% LOGIN %%%%%%
 router.get('/login', (req, res)=>{
     
-    res.render('login')
-      
+    res.render('login', {alert:false})
+   
       
   
   })

@@ -40,6 +40,23 @@ exports.login = async(req, res) => {
     const pass = req.body.pass;
     console.log(user, pass);
 
+    if(!user || !pass ){
+        res.render('login',{
+            alert:true,
+            alertTitle: "Warning!",
+            alertMessage: "Introduce User and or Password! :o",
+            alertIcon:'info',
+            showConfirmButton: true,
+            timer: false,
+            ruta: 'login'
+        })
+    }else{
+        
+
+    }
+                
+               
+
     } catch (error) {
         console.log(error);
         
