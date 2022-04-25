@@ -21,7 +21,7 @@ app.use(express.static('public'));
 dotenv.config({path: './env/.env'})
 
 //set cookies
-// app.use(cookieParser)
+app.use(cookieParser());
 
 //configuring Node to process data
 app.use(express.urlencoded({extended:true}));
