@@ -51,7 +51,20 @@ exports.login = async(req, res) => {
             ruta: 'login'
         })
     }else{
-        
+        conexion.query('SELECT * FROM users_login WHERE user = ?', [user], async (error, results)=>{
+            if( results.length == 0 || ! (await bcryptjs.compare(pass, results[0].pass)) ){
+                res.render('login', {
+                    alert: false,
+                    alertTitle: "Error",
+                    alertMessage: "User and or Password incorrect :(!",
+                    alertIcon:'error',
+                    showConfirmButton: true,
+                    timer: false,
+                    ruta: 'login'    
+                })
+            }
+
+        })
 
     }
                 
