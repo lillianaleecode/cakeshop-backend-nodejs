@@ -8,7 +8,7 @@ const Blog = require('./models/blog')
 //const dbURI = 'mongodb+srv://root:1234@node.zn6hp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const dbURI = 'mongodb+srv://root:1234@node.zn6hp.mongodb.net/node?retryWrites=true&w=majority';
 mongoose.connect(dbURI)
-.then ((result) => app.listen(5001))
+.then ((result) => app.listen(4001))
 .catch((err)=> console.log(err));
 
 const PORT = process.env.PORT || 3001;
