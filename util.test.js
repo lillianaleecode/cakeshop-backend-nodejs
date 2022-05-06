@@ -5,3 +5,9 @@ test('should output name and age', () => {
     const text = generateText('Lilly', 26);
     expect(text).toBe('Lilly (26 years old)');
 });
+
+//checking the opposite to avoid false positives
+test('should output data-less text', () => {
+    const text = generateText('', null);
+    expect(text).toBe(' (null years old)');
+});
