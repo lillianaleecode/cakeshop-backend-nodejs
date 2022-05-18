@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type= "text/javascript"> 
+    class Animal {
+        constructor (_name){
+          this.name = _name; // initialize name of variable
+        }
+    
+        makeSound(){
+          console.log("generic animal sound");
+        }
+        walk() {
+          console.log(this.name, ' is walking');
+        }
+        eat() {
+          console.log(this.name, ' is eating');
+        }
+        drink() {
+          console.log(this.name, ' is drinking');
+        }
+      }
+       
+      // inherit this functionality in child class Rabbit and Cat
+       
+      class Rabbit extends Animal {
+        constructor() {
+          super('rabbit'); // initialize parent class Animal and set name
+        }
+        jump() {
+          console.log('rabbit is jumping');
+        }
+      }
+       
+      //POLYMORPHISM
+      class Cat extends Animal {
+        constructor() {
+          super('cat'); // initialize parent class Animal and set name
+        }
+    
+        //polymorphism here: overriding parent class inside the child class
+        meow() {
+          console.log('cat is meowing');
+        }
+      }
+
+      class Dog extends Animal {
+        constructor(name) {
+          super(name); // initialize parent class Animal and set name
+        }
+    
+        //polymorphism here: overriding parent class inside the child class
+        makeSound() {
+          console.log('wooff woof');
+        }
+      }
+
+      
+    
+    const cat = new Cat();
+    
+    const rabbit = new Rabbit();
+    ////
+    const a1 = new Animal();
+    a1.makeSound(); //will print generic animal sound
+
+    const a2 = new Dog("Osa");
+    a2.makeSound(); //will pritn woof woof
+    //////
+    cat.eat();
+    
+    cat.meow();
+    
+    rabbit.jump();
+    
+    rabbit.drink();
+     </script>
+    
+    
+</body>
+</html>
+ 
+
+// prints in the console
+// cat  is eating
+// cat is meowing
+// rabbit is jumping
+// rabbit  is drinking
+
