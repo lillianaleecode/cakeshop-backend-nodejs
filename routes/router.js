@@ -5,37 +5,31 @@ const conexion = require('../database/db')
 
 const authController = require('../controllers/authController')
 
+const cluster = require('cluster');
+const os = require('os');
+const numCpu = os.cpus().length;
+
 //%%%%%% ROUTERS PARA LAS VISTAS %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%% %%%%%%
 //%%%%%% DASHBOARD %%%%%%
 router.get('/', authController.isAuthenticated, (req, res)=>{
     
-  res.render('index', {user:req.user})
-    
-    
-
+    res.render('index', {user:req.user})
 })
 
 //%%%%%% LOGIN %%%%%%
 router.get('/login', (req, res)=>{
-    
-    res.render('login', {alert:false})
-   
-      
-  
+    //res.render('login', {alert:false})
+    res.send(`scalling check. server running on: ${process.pid}`) //I will see it on the response from send request from rest.http
+    cluster.worker.kill();
   })
 
 //%%%%%% REGISTER %%%%%%
 router.get('/register', (req, res)=>{
-    
     res.render('register')
-      
-      
-  
   })
 
 //%%%%%% USERS %%%%%%
 router.get('/user_roles', (req, res)=>{
-    
     conexion.query('SELECT * FROM users', (error, results)=>{
         if(error){
             throw error;
@@ -43,13 +37,10 @@ router.get('/user_roles', (req, res)=>{
             res.render('user_roles', {results:results});
         }
     });
-    
-
 })
 
 //%%%%%% USERS CREATE %%%%%%
-router.get('/create', (req, res)=>{
-    
+router.get('/create', (req, res)=>{   
     conexion.query('SELECT * FROM users', (error, results)=>{
         if(error){
             throw error;
@@ -57,14 +48,11 @@ router.get('/create', (req, res)=>{
             res.render('create', {results:results});
         }
     });
-    
-
 })
 
 //%%%%%% USERS EDIT %%%%%%
 router.get('/edit/:id', (req, res)=>{
     const id = req.params.id;
-    
     conexion.query('SELECT * FROM users WHERE id=?', [id], 
     (error, results)=>{
         if(error){
@@ -73,8 +61,6 @@ router.get('/edit/:id', (req, res)=>{
             res.render('edit', {user:results[0]});
         }
     });
-    
-
 })
 
 //%%%%%% USERS DELETE %%%%%%
@@ -88,8 +74,6 @@ router.get('/delete/:id', (req, res)=>{
             res.redirect('/user_roles');
         }
     });
-    
-
 })
 //%%%%%% CAKE REVIEW %%%%%%
 router.get('/cake_review', (req, res)=>{
@@ -100,11 +84,10 @@ router.get('/cake_review', (req, res)=>{
             res.send(results);
         }
     });
-    
-
 })
 
 const crud = require('../controllers/crud.js');
+const PoolCluster = require('mysql/lib/PoolCluster');
 router.post('/save', crud.save);
 router.post('/update', crud.update);
 

@@ -3,15 +3,19 @@ const app = express();
 const mongoose = require('mongoose');
 const Blog = require('./models/blog')
 const dbURI = 'mongodb+srv://root:1234@node.zn6hp.mongodb.net/node?retryWrites=true&w=majority';
-mongoose.connect(dbURI)
-.then ((result) => app.listen(4001))
-.catch((err)=> console.log(err));
+// mongoose.connect(dbURI)
+// .then ((result) => app.listen(4001))
+// .catch((err)=> console.log(err));
 
 const PORT = process.env.PORT || 3001;
 const cors = require('cors');
 const mysql = require('mysql2');
 const dotenv = require('dotenv'); //for the login
 const cookieParser = require('cookie-parser');//for the login
+
+const cluster = require('cluster');
+const os = require('os');
+const numCpu = os.cpus().length;
 
 
 class Server {
@@ -70,10 +74,27 @@ class Server {
     }
     listenServer(){
 
-        app.listen((process.env.PORT || 5000), () => {
-        console.log("running on port http://localhost:5000");
+        if (cluster.isMaster){
+            for (let i = 0; i < numCpu; i++) {
+                cluster.fork()
+                
+                
+            }
 
-        });
+            cluster.on('exit', (worker, code, signal) =>{
+                console.log(`worker ${worker.process.pid} died`);
+                cluster.fork();//new instance will be initialized
+            })
+
+        } else { //setup for workers
+            app.listen((process.env.PORT || 5000), () => {
+            console.log(`server ${process.pid} @ http://localhost:5000`);});
+
+
+        }
+
+        // app.listen((process.env.PORT || 5000), () => {
+        // console.log("running on port http://localhost:5000");});
 
      }
 }

@@ -4,7 +4,7 @@
   "description": "downloaded modules:  npm install express body-parser mysql npm install nodemon",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "devStart": "node app.js",
     "test": "jest --watch"
   },
