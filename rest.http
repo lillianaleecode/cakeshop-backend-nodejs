@@ -1,1 +1,2 @@
 GET http://localhost:5000/
+//loadtest -n 1000 -c 100 http://localhost:5000/

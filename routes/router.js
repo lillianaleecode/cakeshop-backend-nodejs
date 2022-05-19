@@ -18,8 +18,8 @@ router.get('/', authController.isAuthenticated, (req, res)=>{
 
 //%%%%%% LOGIN %%%%%%
 router.get('/login', (req, res)=>{
-    //res.render('login', {alert:false})
-    res.send(`scalling check. server running on: ${process.pid}`) //I will see it on the response from send request from rest.http
+    res.render('login', {alert:false})
+    // res.send(`scalling check. server running on: ${process.pid}`) //I will see it on the response from send request from rest.http
     cluster.worker.kill();
   })
 
